@@ -17,7 +17,7 @@ class ObjectiveController extends Controller
     {
         $objectives     = Objective::all();
         $key_results    =  KeyResult::all();
-        return view('home', ['objectives' => $objectives]);
+        return view('home')->with(compact('objectives', 'key_results'));
     }
 
     /**

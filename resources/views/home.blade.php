@@ -10,19 +10,31 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
+        <!-- Header -->
+        <div>
+            <h1>Your personal OKR tracker</h1>
+        </div>
+        <!-- End Header -->
+
+        <!-- Content -->
         <div>
             @foreach ($objectives as $objective)
             <div>
                 <h4>Objective: <span>{{ $objective->name}}</span></h4>
                 <div>
+                    <h5>Key Results</h5>
                     <ul>
-                        <li>Call 10 new clients</li>
-                        <li>Email 20 new clients</li>
-                        <li>Have lunch with 5 new clients</li>
+                        @foreach ($key_results as $key_result)
+                            <li>{{ $key_result->name }}</li>
+                        @endforeach
                     </ul>
+                <div>
+                    <span>Target Date: {{ $objective->target_date }}</span>
+                </div>
                 </div> 
             </div>
             @endforeach
         </div>
+        <!-- End Content -->
     </body>
 </html>
