@@ -13,11 +13,31 @@
         <!-- Header -->
         <div>
             <h1>Your personal OKR tracker</h1>
+            @auth
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="{{ route('logout') }}"
+                    onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </a>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                    @csrf
+                </form>
+            </div>    
+            @endauth
         </div>
         <!-- End Header -->
 
         <!-- Content -->
         <div>
+            <div>
+                @auth
+                <a href="/create">Create Your OKRs</a>
+                @endauth
+                @guest
+                <span><a href="/login">Login</a> or <a href="/register">Register</a> to create your OKRs</span>
+                @endguest
+            </div>
             @foreach ($objectives as $objective)
             <div>
                 <h4>Objective: <span>{{ $objective->name}}</span></h4>

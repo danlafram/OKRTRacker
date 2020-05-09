@@ -15,6 +15,7 @@ class ObjectiveController extends Controller
      */
     public function index()
     {
+        // When FK is set up: $keyresults = Objective::find($id)->keyresults; work this out when FK is done.
         $objectives     = Objective::all();
         $key_results    =  KeyResult::all();
         return view('home')->with(compact('objectives', 'key_results'));
@@ -32,24 +33,25 @@ class ObjectiveController extends Controller
         $target_date = $request->input('target_date');
         
         $objective = Objective::create([
-            'name' => $name,
-            'target_date' => $target_date,
-            'is_done' => false
+            'name'          => $name,
+            'target_date'   => $target_date,
+            'is_done'       => false
         ]);
 
         $key_results = $request->key_result;
 
         $krs = []; //krs == KeyResults
         foreach($key_results as $kr){
-            $key_result = new KeyResult();
-            $key_result->name = $kr;
-            $key_result->is_done= false;
+            $key_result                 = new KeyResult();
+            $key_result->name           = $kr;
+            $key_result->is_done        = false;
+            $key_result->objective_id   = $objective->id;
             $krs[] = $key_result->attributesToArray();
         }
 
         KeyResult::insert($krs);
 
-        return view('home');
+        return redirect()->action('ObjectiveController@index');
     }
 
     /**

@@ -20,3 +20,6 @@ Route::get('/create', function () {
 });
 
 Route::post('/objectives/create', 'ObjectiveController@store');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

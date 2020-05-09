@@ -12,4 +12,12 @@ class Objective extends Model
      * @var array
      */
     protected $fillable = ['name', 'target_date', 'is_done'];
+
+    /**
+     * Get the Key Results for the Objective.
+     */
+    public function keyresults()
+    {
+        return $this->hasMany('App\KeyResult');
+    }
 }
