@@ -15,7 +15,9 @@ class ObjectiveController extends Controller
      */
     public function index()
     {
-        return view('home'); 
+        $objectives     = Objective::all();
+        $key_results    =  KeyResult::all();
+        return view('home', ['objectives' => $objectives]);
     }
 
     /**

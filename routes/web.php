@@ -13,9 +13,7 @@ use App\Http\Controllers\ObjectiveController;
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'ObjectiveController@index');
 
 Route::get('/create', function () {
     return view('create');
