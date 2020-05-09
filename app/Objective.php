@@ -11,7 +11,7 @@ class Objective extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'target_date', 'is_done'];
+    protected $fillable = ['name', 'target_date', 'is_done', 'user_id'];
 
     /**
      * Get the Key Results for the Objective.

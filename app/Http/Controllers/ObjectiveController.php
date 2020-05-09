@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Objective;
 use App\KeyResult;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class ObjectiveController extends Controller
 {
@@ -15,9 +16,10 @@ class ObjectiveController extends Controller
      */
     public function index()
     {
-        // When FK is set up: $keyresults = Objective::find($id)->keyresults; work this out when FK is done.
-        $objectives     = Objective::all();
-        $key_results    =  KeyResult::all();
+        $objectives     = Objective::where('user_id', Auth::id())->get();
+        $key_results = $objectives->map(function ($objective){
+            return $objective->keyresults;
+        })->first();
         return view('home')->with(compact('objectives', 'key_results'));
     }
 
@@ -35,7 +37,8 @@ class ObjectiveController extends Controller
         $objective = Objective::create([
             'name'          => $name,
             'target_date'   => $target_date,
-            'is_done'       => false
+            'is_done'       => false,
+            'user_id'       => Auth::id() 
         ]);
 
         $key_results = $request->key_result;
