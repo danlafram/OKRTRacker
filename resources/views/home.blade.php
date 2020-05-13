@@ -54,9 +54,11 @@
                 </div> 
             </div>
             @empty
+            @auth
             <div>
                 <h4>You don't have any OKRs right now. <a href="/create">Create Your OKRs</a></h4>
             </div>
+            @endauth
             @endforelse
         </div>
         <!-- End Content -->
