@@ -45,11 +45,13 @@ class ObjectiveController extends Controller
 
         $krs = []; //krs == KeyResults
         foreach($key_results as $kr){
-            $key_result                 = new KeyResult();
-            $key_result->name           = $kr;
-            $key_result->is_done        = false;
-            $key_result->objective_id   = $objective->id;
-            $krs[] = $key_result->attributesToArray();
+            if(!is_null($kr)){
+                $key_result                 = new KeyResult();
+                $key_result->name           = $kr;
+                $key_result->is_done        = false;
+                $key_result->objective_id   = $objective->id;
+                $krs[] = $key_result->attributesToArray();
+            }
         }
 
         KeyResult::insert($krs);

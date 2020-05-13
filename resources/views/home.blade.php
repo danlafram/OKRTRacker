@@ -38,13 +38,13 @@
                 <span><a href="/login">Login</a> or <a href="/register">Register</a> to create your OKRs</span>
                 @endguest
             </div>
-            @foreach ($objectives as $objective)
+            @forelse ($objectives as $objective)
             <div>
                 <h4>Objective: <span>{{ $objective->name}}</span></h4>
                 <div>
                     <h5>Key Results</h5>
                     <ul>
-                        @foreach ($key_results as $key_result)
+                        @foreach ($objective->keyresults as $key_result)
                             <li>{{ $key_result->name }}</li>
                         @endforeach
                     </ul>
@@ -53,7 +53,11 @@
                 </div>
                 </div> 
             </div>
-            @endforeach
+            @empty
+            <div>
+                <h4>You don't have any OKRs right now. <a href="/create">Create Your OKRs</a></h4>
+            </div>
+            @endforelse
         </div>
         <!-- End Content -->
     </body>
