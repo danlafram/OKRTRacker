@@ -8,6 +8,10 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
+
+        <!-- JS -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> <!-- CDN for now, local later -->
+        <script type="text/javascript" src="{{ URL::asset('js/ajax.js') }}"></script>
     </head>
     <body>
         <!-- Header -->
@@ -46,11 +50,11 @@
                     <ul>
                         @foreach ($objective->keyresults as $key_result)
                             @if($key_result->is_done)
-                            <li><strike>{{ $key_result->name }}</strike><span><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></span></li>
+                            <li><strike>{{ $key_result->name }}</strike>
                             @else
-                                <li>{{ $key_result->name }}<span><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></span></li>
+                                <li>{{ $key_result->name }}
                             @endif
-                            
+                                <input type="checkbox" id="updateBox" name="updateBox" value="Bike"></li>
                         @endforeach
                     </ul>
                 <div>
