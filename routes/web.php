@@ -19,7 +19,17 @@ Route::get('/create', function () {
     return view('create');
 });
 
-Route::post('/objectives/create', 'ObjectiveController@store');
+// Matches the "/objectives/*" URL
+Route::prefix('objectives')->group(function () {
+    Route::post('create', 'ObjectiveController@store');
+});
+
+// Matches the "/keyresults/*" URL
+Route::prefix('keyresults')->group(function (){
+    Route::patch('update/{id}', 'KeyResultController@update');
+});
+
+
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');

@@ -45,7 +45,7 @@
                     <h5>Key Results</h5>
                     <ul>
                         @foreach ($objective->keyresults as $key_result)
-                            <li>{{ $key_result->name }}</li>
+                            <li>{{ $key_result->name }}<span><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></span></li>
                         @endforeach
                     </ul>
                 <div>
@@ -53,6 +53,7 @@
                 </div>
                 </div> 
             </div>
+            <hr>
             @empty
             @auth
             <div>
