@@ -50,6 +50,8 @@ class ObjectiveController extends Controller
                 $key_result->name           = $kr;
                 $key_result->is_done        = false;
                 $key_result->objective_id   = $objective->id;
+                $key_result->created_at     =  \Carbon\Carbon::now()->format("Y-m-d H:i:s");
+                $key_result->updated_at     = \Carbon\Carbon::now()->format("Y-m-d H:i:s");
                 $krs[] = $key_result->attributesToArray();
             }
         }

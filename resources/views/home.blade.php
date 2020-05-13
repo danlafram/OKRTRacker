@@ -45,7 +45,12 @@
                     <h5>Key Results</h5>
                     <ul>
                         @foreach ($objective->keyresults as $key_result)
-                            <li>{{ $key_result->name }}<span><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></span></li>
+                            @if($key_result->is_done)
+                            <li><strike>{{ $key_result->name }}</strike><span><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></span></li>
+                            @else
+                                <li>{{ $key_result->name }}<span><input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"></span></li>
+                            @endif
+                            
                         @endforeach
                     </ul>
                 <div>

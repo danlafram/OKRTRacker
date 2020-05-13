@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\KeyResult;
 use Illuminate\Http\Request;
 
 class KeyResultController extends Controller
@@ -13,7 +14,7 @@ class KeyResultController extends Controller
      */
     public function index()
     {
-        //
+        // Might not be necessary.
     }
 
     /**
@@ -47,7 +48,10 @@ class KeyResultController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+       $keyResult = KeyResult::findOrFail($id);
+       $keyResult->is_done = !$keyResult->is_done;
+       $keyResult->save();
+       return response()->json(['success' => 'success'], 200);
     }
 
     /**
